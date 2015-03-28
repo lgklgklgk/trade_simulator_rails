@@ -1,5 +1,6 @@
 class Trade < ActiveRecord::Base
-  
+  has_many :transactions
+  attr_accessible :accepted
   #def initialize(options)
     #@id                   = options["id"]
     #@accepted             = options["accepted"]
@@ -33,17 +34,17 @@ class Trade < ActiveRecord::Base
   #   end
   # end
 
-  def hypothetical_remaining_player_team
-    @player_team_with_ai_players = Player.find_all_by_team_id(@player_team)
-    @player_dealt_players.each {|a| @player_team_with_ai_players.delete_if{|x| x.id == a.id}}
-    @player_team_with_ai_players << @ai_dealt_players
-  end
-
-  def hypothetical_remaining_ai_team
-    @ai_team_with_player_players = Player.find_all_by_team_id(@ai_team)
-    @ai_dealt_players.each {|a| @ai_team_with_player_players.delete_if{|x| x.id == a.id}}
-    @ai_team_with_player_players << @player_dealt_players
-  end
+  # def hypothetical_remaining_player_team
+  #   @player_team_with_ai_players = Player.find_all_by_team_id(@player_team)
+  #   @player_dealt_players.each {|a| @player_team_with_ai_players.delete_if{|x| x.id == a.id}}
+  #   @player_team_with_ai_players << @ai_dealt_players
+  # end
+  #
+  # def hypothetical_remaining_ai_team
+  #   @ai_team_with_player_players = Player.find_all_by_team_id(@ai_team)
+  #   @ai_dealt_players.each {|a| @ai_team_with_player_players.delete_if{|x| x.id == a.id}}
+  #   @ai_team_with_player_players << @player_dealt_players
+  # end
 
   def team_has_too_many_players
     if @player_team_with_ai_players.flatten!.length <= 45 && @ai_team_with_player_players.flatten!.length <= 45

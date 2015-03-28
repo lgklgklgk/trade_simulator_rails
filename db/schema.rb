@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150326221015) do
+ActiveRecord::Schema.define(:version => 20150327173903) do
 
   create_table "players", :force => true do |t|
     t.string  "first_name"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20150326221015) do
 
   create_table "transactions", :force => true do |t|
     t.integer "player_id"
-    t.string  "destination"
     t.integer "trade_id"
   end
 
